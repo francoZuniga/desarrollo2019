@@ -3,7 +3,6 @@ package punto1;
 public class testItem {
     public static void main(String[] args){
         item[] arreglo = carga();
-        menu();
         
     }
     
@@ -36,5 +35,43 @@ public class testItem {
         }
         
         return arreglo;
+    }
+    
+    public static void cargaMenu(item[] arreglo){
+        String continuar = "";
+        do{
+            menu();
+            int opcion;
+            opcion = teclado.Entero();
+            
+        }while(continuar.toUpperCase() != "S");
+    }
+    
+    public static void listado(item[] arreglo){
+        //listamos los items
+        System.out.println("codigo, precio, stock, descripcion");
+        for(int i = 0; i < arreglo.length; i++){
+            System.out.println(arreglo[i].getItem());
+        }
+    }
+    
+    public static int contarItemStock(item[] arreglo){
+        int contador = 0;
+        for(int i=0; i < arreglo.length; i++){
+            if(arreglo[i].getStock() <= 0){
+                contador++;
+            }
+        }
+        return contador;
+    }
+    
+    public static int contadorPrecioMinimo(item[] arreglo, double precioUnitario){
+        int contador = 0;
+        for(int i = 0; i < arreglo.length; i++){
+            if(arreglo[i].getMinimoPrecioUnitario(precioUnitario)){
+                contador ++;
+            }
+        }
+        return contador;
     }
 }
