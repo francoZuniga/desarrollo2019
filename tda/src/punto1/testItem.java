@@ -3,16 +3,8 @@ package punto1;
 public class testItem {
     public static void main(String[] args){
         item[] arreglo = carga();
-        
-    }
-    
-    public static void menu(){
-        System.out.println("seleccione una de las siguientes opciones: ");
-        System.out.println(
-        " 1, Listado de ítems: Por cada ítem muestre su nro.de código, descripción, precio unitario y cantidad de stock \n" +
-        " 2, Contar la cantidad de items sin stock.\n" +
-        " 3, Contar la cantidad de items con un precio unitario menor a un valor dado.\n" +
-        " 4, Aumentar a todos los ítems un porcentaje dado al precio unitario.");
+        carga();
+        cargaMenu(arreglo);
     }
     
     public static item[] carga(){
@@ -37,6 +29,15 @@ public class testItem {
         return arreglo;
     }
     
+    public static void menu(){
+        System.out.println("seleccione una de las siguientes opciones: ");
+        System.out.println(
+        " 1, Listado de ítems: Por cada ítem muestre su nro.de código, descripción, precio unitario y cantidad de stock \n" +
+        " 2, Contar la cantidad de items sin stock.\n" +
+        " 3, Contar la cantidad de items con un precio unitario menor a un valor dado.\n" +
+        " 4, Aumentar a todos los ítems un porcentaje dado al precio unitario.");
+    }
+    
     public static void cargaMenu(item[] arreglo){
         String continuar = "";
         do{
@@ -44,6 +45,29 @@ public class testItem {
             int opcion;
             opcion = teclado.Entero();
             
+            switch(opcion){
+                case 1:
+                    listado(arreglo);
+                break;
+                case 2:
+                    System.out.println("la cantidad de items sin stock, es: "+contarItemStock(arreglo));
+                break;
+                case 3:
+                    System.out.println("ingrese un precio minimo:");
+                    double precio;
+                    precio = teclado.Double();
+                    System.out.println("la cantidad de itmes con un precio menimo "+precio+" es: "+contadorPrecioMinimo(arreglo, precio));
+                break;
+                case 4:
+                    System.out.println("ingrese un porcentaje al cual subir todos los precios: ");
+                    double porcentaje = teclado.Double();
+                    for(int i = 0; i<arreglo.length; i++){
+                        arreglo[i].setAumentarPrecioUnitarioConPorcentaje(porcentaje);
+                    }
+                break;
+            }
+            System.out.println("desea continuar: s/n");
+            continuar = teclado.String();
         }while(continuar.toUpperCase() != "S");
     }
     

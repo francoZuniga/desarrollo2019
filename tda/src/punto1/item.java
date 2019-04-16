@@ -19,9 +19,9 @@ public class item {
     
     //metodos set
     
-    public void setAumentarPrecioUnitarioConPorcentaje(int porcentaje){
+    public void setAumentarPrecioUnitarioConPorcentaje(double porcentaje){
         //sacamos el precio de un porcentaje
-        this.precioUnitario = (this.precioUnitario / 100)*porcentaje;
+        this.precioUnitario = (this.precioUnitario * porcentaje)/100;
     }
     
     //metodos get
@@ -40,5 +40,9 @@ public class item {
             control = true;
         }
         return control;
+    }
+    
+    public boolean equlsItem(item argItem){
+        return this.codigo == argItem.codigo;
     }
 }
