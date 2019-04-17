@@ -1,0 +1,47 @@
+package punto3;
+
+public class puntosCliente {
+    private int nroCliente, puntos;
+    //constructores
+    public puntosCliente(int argNroCliente){
+        this.nroCliente = argNroCliente;
+        this.puntos = 0;
+    }
+    //observadores
+    public int getNroCliente(){
+        return this.nroCliente;
+    }
+    
+    public int getPuntos(){
+        return this.puntos;
+    }
+    
+    public String toString(){
+        return "NroCliente: "+this.nroCliente+", Puntos: "+this.puntos;
+    }
+    
+    public boolean equals(puntosCliente argPuntos){
+        return this.nroCliente == argPuntos.getNroCliente() && this.puntos == argPuntos.getPuntos();
+    }
+    //modificadores
+    public void setPuntos(int argPuntos){
+        this.puntos = argPuntos;
+    }
+    //propias del tipo
+    public void sumarPuntos(int argPuntos){
+        this.puntos = this.puntos + argPuntos;
+    }
+    
+    public boolean canjearPuntos(int canje){
+        boolean control;
+        if(this.puntos >= canje){
+            this.puntos = this.puntos - canje;
+            control = true;
+        }
+        else{
+            control = false;
+        }
+        return control;
+    }
+    
+}
