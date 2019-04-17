@@ -1,0 +1,31 @@
+package punto3;
+
+import utileria.teclado;
+
+public class testPuntos {
+    public static void main(String[] args){
+        String continuar = "";
+        int opciones;
+        //cargasmos un arreglo de puntosClientes
+        System.out.println("cuantos clientes desea cargar: ");
+        int longitud = teclado.Entero();
+        puntosCliente[] arreglo = new puntosCliente[longitud];
+        carga(arreglo);
+        //mostramos un menu con las opciones a operar
+        
+        
+    }
+    
+    public static puntosCliente[] carga(puntosCliente[] arreglo){
+        for(int i = 0; i< arreglo.length; i++){
+            System.out.println("ingrese los datos del cliente:");
+            System.out.println("ingrese el nro de cliente:");
+            int argNroCliente = teclado.Entero();
+            System.out.println("ingrese los puntos del cliente:");
+            int argPuntos = teclado.Entero();
+            arreglo[i] = new puntosCliente(argNroCliente);
+            arreglo[i].setPuntos(argPuntos);
+        }
+        return arreglo;
+    }
+}
