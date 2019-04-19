@@ -1,8 +1,7 @@
 package tp7;
 public class perro {
    public String nombre, apellidoDueño, raza;
-   public int año; 
-   public double costo;
+   public int año, costo;
    public boolean cuidado;
    //constructores
    public perro(String argNombre,String argApellidoDueño,String argRaza){
@@ -11,7 +10,7 @@ public class perro {
        this.raza = argRaza;
    }
    
-   public perro(String argNombre, String argApellidoDuño, String argRaza, int argAño, double argCosto, boolean argCuidado){
+   public perro(String argNombre, String argApellidoDuño, String argRaza, int argAño,int argCosto, boolean argCuidado){
        this.nombre = argNombre;
        this.apellidoDueño = argApellidoDuño;
        this.raza = argRaza;
@@ -32,11 +31,15 @@ public class perro {
        return this.raza;
    }
    
+   public int getPrecioDiario(){
+       return this.costo;
+   }
+   
    public int getAño(){
        return this.año;
    }
    
-   public double getCosto(){
+   public int getCosto(){
        return this.costo;
    }
    
@@ -45,23 +48,9 @@ public class perro {
    }
    
    public String toString(){
-       String cuidado = "no";
        if(this.cuidado){
-           cuidado = "si";
+           String StringCuidado = 
        }
-       return "nombre: "+this.nombre+" dueño: "+this.apellidoDueño+" raza: "+this.raza+" año: "+this.año+" costo: "+cuidado;
-   }
-   //modificadores
-   public void setCosto(double argCosto){
-       this.costo = argCosto;
-   }
-   
-   public void setPrecioProcentaje(double argPorcentaje){
-       double precioDePorcentaje = porcentaje(argPorcentaje);
-       this.costo = this.costo + precioDePorcentaje;
-   }
-   //propias del tipo
-   private double porcentaje(double argPorcentaje){
-       return (this.costo * argPorcentaje)/100;
+       return "nombre: "+this.nombre+" dueño: "+this.apellidoDueño+" raza: "+this.raza+" año: "this.año+" costo: "+this.costo+(if(this.cuidado){})
    }
 }
