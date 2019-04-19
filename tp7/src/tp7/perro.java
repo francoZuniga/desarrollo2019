@@ -1,8 +1,10 @@
 package tp7;
 public class perro {
    public String nombre, apellidoDueño, raza;
-   public int año, costo;
+   public int año; 
+   public double costo;
    public boolean cuidado;
+   private boolean porcentaje;
    //constructores
    public perro(String argNombre,String argApellidoDueño,String argRaza){
        this.nombre = argNombre;
@@ -10,11 +12,11 @@ public class perro {
        this.raza = argRaza;
    }
    
-   public perro(String argNombre, String argApellidoDuño, String argRaza, int argAño,int argCosto, boolean argCuidado){
+   public perro(String argNombre, String argApellidoDuño, String argRaza, int argAño, boolean argCuidado){
        this.nombre = argNombre;
        this.apellidoDueño = argApellidoDuño;
        this.raza = argRaza;
-       this.costo = argCosto;
+       this.costo = 150; //queda a gusto del programador
        this.año = argAño;
        this.cuidado = argCuidado;
    }
@@ -31,15 +33,11 @@ public class perro {
        return this.raza;
    }
    
-   public int getPrecioDiario(){
-       return this.costo;
-   }
-   
    public int getAño(){
        return this.año;
    }
    
-   public int getCosto(){
+   public double getCosto(){
        return this.costo;
    }
    
@@ -48,9 +46,23 @@ public class perro {
    }
    
    public String toString(){
+       String cuidado = "no";
        if(this.cuidado){
-           String StringCuidado = 
+           cuidado = "si";
        }
-       return "nombre: "+this.nombre+" dueño: "+this.apellidoDueño+" raza: "+this.raza+" año: "this.año+" costo: "+this.costo+(if(this.cuidado){})
+       return "nombre: "+this.nombre+" dueño: "+this.apellidoDueño+" raza: "+this.raza+" año: "+this.año+" costo: "+cuidado;
+   }
+   //modificadores
+   public void setCosto(double argCosto){
+       this.costo = argCosto;
+   }
+   
+   public void setPrecioProcentaje(double argPorcentaje){
+       double precioDePorcentaje = porcentaje(argPorcentaje);
+       this.costo = this.costo + precioDePorcentaje;
+   }
+   //propias del tipo
+   private double porcentaje(double argPorcentaje){
+       return (this.costo * argPorcentaje)/100;
    }
 }
