@@ -4,7 +4,8 @@ public class perro {
    public int año; 
    public double costo;
    public boolean cuidado;
-   private boolean porcentaje;
+   private double porcentaje = 15;
+   private double precio = 100; 
    //constructores
    public perro(String argNombre,String argApellidoDueño,String argRaza){
        this.nombre = argNombre;
@@ -16,7 +17,12 @@ public class perro {
        this.nombre = argNombre;
        this.apellidoDueño = argApellidoDuño;
        this.raza = argRaza;
-       this.costo = 150; //queda a gusto del programador
+       if(argCuidado){
+           this.costo = this.costo + porcentaje(porcentaje);
+       }
+       else{
+           this.costo = precio; //queda a gusto del programador
+       }
        this.año = argAño;
        this.cuidado = argCuidado;
    }

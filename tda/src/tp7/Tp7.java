@@ -36,10 +36,31 @@ public class Tp7 {
     }
     
     public static void menu(){
+         System.out.println("1. mostrar la deuda de cada unos de los dueños: ");
+         System.out.println("2. listamos a todos los perros de la guarderia: ");
+         System.out.println("3. buscamos un perro en base al nombre, dueño, y raza: ");
+         System.out.println("4. modificamos a un perro en base a su ");
+    }
+    
+    public static void cargaPrograma(int[] dias, perro[] arreglo){
         
     }
     
-    public static void cargaDias(){
+    public static void listarPerros(perro[] arreglo){
+        //recorremos el arreglo de perros
+        for(int i = 0; i < arreglo.length; i++){
+            System.out.println(arreglo[i].toString());
+        }
+    }
+    
+    public static void listarDeuda(perro[] arreglo, int[] dias){
+        //mostramos la deuda de cada dueño
+        for(int i = 0; i<arreglo.length; i++){
+            System.out.println("del dueño: "+arreglo[i].getApellidoDueño()+" debe pagar: "+arreglo[i].getCosto()*dias[i]);
+        }
+    }
+    
+    public static boolean buquedaPerro(perro[] arreglo){
         
     }
 }
