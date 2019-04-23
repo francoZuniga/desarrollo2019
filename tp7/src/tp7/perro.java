@@ -71,4 +71,8 @@ public class perro {
    private double porcentaje(double argPorcentaje){
        return (this.costo * argPorcentaje)/100;
    }
+   
+   public boolean equels(perro argPerro){
+       return this.nombre.equalsIgnoreCase(argPerro.nombre) && this.apellidoDueño.equalsIgnoreCase(argPerro.apellidoDueño) && this.raza.equalsIgnoreCase(argPerro.raza);
+   }
 }

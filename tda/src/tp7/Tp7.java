@@ -39,11 +39,40 @@ public class Tp7 {
          System.out.println("1. mostrar la deuda de cada unos de los dueños: ");
          System.out.println("2. listamos a todos los perros de la guarderia: ");
          System.out.println("3. buscamos un perro en base al nombre, dueño, y raza: ");
-         System.out.println("4. modificamos a un perro en base a su ");
+         System.out.println("4. modificamos a un perro en base a su datos primarios");
     }
     
     public static void cargaPrograma(int[] dias, perro[] arreglo){
-        
+        //mostramos las opciones
+        String continuar = "";
+        do{
+            menu();
+            System.out.print(">>");
+            int opcion = teclado.Entero();
+            switch(opcion){
+                case 1:
+                    listarDeuda(arreglo, dias);
+                break;
+                case 2:
+                    listarPerros(arreglo);
+                break;
+                case 3:
+                    System.out.println("ingrese los datos del perro a burcar");
+                    System.out.print("nombre >> ");
+                    String argNombre = teclado.string();
+                    System.out.print("apellido de dueño>> ");
+                    String argApellido = teclado.string();
+                    System.out.print("raza >> ");
+                    String argRaza = teclado.string();
+                    int indice = buquedaPerro(arreglo, argNombre, argApellido, argRaza);
+                    if(indice != -1){
+                        System.out.println(arreglo[indice].toString()); 
+                    }
+                break;
+                case 4:
+                    
+            }
+        }while(continuar.equalsIgnoreCase("s"));
     }
     
     public static void listarPerros(perro[] arreglo){
@@ -60,7 +89,23 @@ public class Tp7 {
         }
     }
     
-    public static boolean buquedaPerro(perro[] arreglo){
+    public static int buquedaPerro(perro[] arreglo, String argNombre, String argApellido, String argRaza){
+        int i = 0;
+        int control = -1;
+        perro controlPerro = new perro(argNombre, argApellido, argRaza);
+        while(i<arreglo.length){
+            if(arreglo[i].equals(controlPerro)){
+                control = i;
+                i = arreglo.length +1;
+            }
+            i++;
+        }
+        return control;
+    }
+    
+    public static void modificarPerro(perro arreglo, int indice){
+        System.out.print("ingrese costo>> ");
+        double argCosto = teclado.Double();
         
     }
 }
