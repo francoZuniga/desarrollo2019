@@ -56,11 +56,11 @@ public class Tp7 {
                 break;
                 case 3:
                     System.out.println("buqueda:");
-                    System.out.print("ingrese el nombre de un perro");
+                    System.out.print("ingrese el nombre de un perro: ");
                     String argNombre = teclado.string();
-                    System.out.print("ingrese un apellido de un dueño:");
+                    System.out.print("ingrese un apellido de un dueño: ");
                     String argApellido = teclado.string();
-                    System.out.print("ingrese la raza de un perro:");
+                    System.out.print("ingrese la raza de un perro: ");
                     String argRaza = teclado.string();
                     if(busquedaPerro(argArreglo, argNombre, argApellido, argRaza) == -1){
                         System.out.println("el perro no esta en la gurderia!!");
@@ -106,7 +106,7 @@ public class Tp7 {
             do{
                 System.out.println("ingrese el nombre del perro: ");
                 argNombre = teclado.string();
-                System.out.println("ingrese el apellido del dueño:");
+                System.out.println("ingrese el apellido del dueño: ");
                 argApellido = teclado.string();
                 System.out.println("ingrese la raza del perro:");
                 argRaza = teclado.string();
@@ -167,8 +167,10 @@ public class Tp7 {
         PERRO conparar = new PERRO(argNombre, argApellido, argRaza);
         int pos = -1;
         for(int i = 0; i<arreglo.length; i++){
-            if(arreglo[i].equals(conparar)){
-                pos = i;
+            if(arreglo[i]!=null){
+                if(arreglo[i].equals(conparar)){
+                    pos = i;
+                }
             }
         }
         return pos;
