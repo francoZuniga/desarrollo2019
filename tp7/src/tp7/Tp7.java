@@ -37,11 +37,30 @@ public class Tp7 {
         dias[9] = 2;
     }
     
+    public static void menu(){
+        //mostrmos el menu de opciones
+    }
+    
     public static void carga(){
+        //donde recibimos las opciones y las operamos con los datos de los arreglos
+    }
+    
+    public static void mustraDeuda(perro[] arreglo, int[] dias){
+        //mostramos las deuda de cada dueño
+    }
+    
+    public static int busquedaPerro(perro[] arreglo, String argNombre, String argApellido, String argRaza){
+        //retornamos la pocione donde se encuentra un perros en particular
         
     }
     
-    public static void cargaDias(){
-        
+    public static boolean comparacionPerros(String argNombre, String argApellido, String argRaza){
+        //comparamos con los perros de la cadena para verificar que no se repitan los datos
     }
+    
+    public static boolean modificacionPerros(String argNombre, String argApellido, String argRaza, double argCosto, boolean argCuidado){
+        //modificamos el perro si se modifico retornamos un true, si no un false
+    }
+    
+    
 }
