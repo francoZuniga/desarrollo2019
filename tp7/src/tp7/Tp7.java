@@ -7,14 +7,13 @@ public class Tp7 {
         PERRO[] arreglo;
         int longitud = 0;
         //cargamos los dos
-        while (longitud < 10) {
+        do{
             System.out.println("ingrese la cantidad de perros a ingresar: ");
             longitud = teclado.Entero();
-            System.out.println("ingrese un numero mayor a 10: ");
-        }
+        }while (longitud < 0);
         //cargamos los primeros diez PERROs
-        arreglo = new PERRO[longitud];
-        int[] dias = new int[longitud];
+        arreglo = new PERRO[10+longitud];
+        int[] dias = new int[10+longitud];
         //los primeros 10 PERROs
         arreglo[0] = new PERRO("pocho", "albarez", "caniche", 200, false);
         dias[0] = 2;
@@ -56,6 +55,11 @@ public class Tp7 {
                     mustraDeuda(argArreglo, dias);
                 break;
                 case 3:
+                    for(int i = 0; i<espacio(argArreglo); i++){
+                        listarPerro(argArreglo, i);
+                    }
+                break;
+                case 4:
                     System.out.println("buqueda:");
                     System.out.print("ingrese el nombre de un perro: ");
                     String argNombre = teclado.string();
@@ -70,14 +74,50 @@ public class Tp7 {
                         listarPerro(argArreglo, busquedaPerro(argArreglo, argNombre, argApellido, argRaza));
                     }
                 break;
-                case 4:
-                    System.out.println("modificar en base a:");
-                    System.out.print("ingrese el nombre de un perro:");
-                    String argNombreModificacion = teclado.string();
-                    System.out.print("ingrese un apellido de un dueño:");
-                    String argApellidoModificacion = teclado.string();
-                    System.out.print("ingrese la raza de un perro:");
-                    String argRazaModificacion = teclado.string();
+                case 5:
+                    String argNombreModificacion, argApellidoModificacion, argRazaModificacion;
+                    do{
+                        System.out.println("modificar en base a:");
+                        System.out.print("ingrese el nombre de un perro:");
+                        argNombreModificacion = teclado.string();
+                        System.out.print("ingrese un apellido de un dueño:");
+                        argApellidoModificacion = teclado.string();
+                        System.out.print("ingrese la raza de un perro:");
+                        argRazaModificacion = teclado.string();
+                        if(!comparacionPerros(argNombreModificacion, argApellidoModificacion, argRazaModificacion, argArreglo)){
+                            System.out.println("el perro no se encuentra en la guarderia!!");
+                        }
+                        else{
+                            System.out.println("ingrese el los datos a modificar:");
+                            int posicion = busquedaPerro(argArreglo, argNombreModificacion, argApellidoModificacion, argRazaModificacion);
+                            System.out.print("el nuevo nombre: ");
+                            argNombreModificacion = teclado.string();
+                            System.out.print("el nuevo apellido: ");
+                            argApellidoModificacion = teclado.string();
+                            System.out.print("la nueva raza: ");
+                            argRazaModificacion = teclado.string();
+                            System.out.println("el nuevo año de nacimiento: ");
+                            int argAñoModificacion = teclado.Entero();
+                            System.out.println("¿tiene cuidados especiales?: S/n");
+                            String controlCuidado = teclado.string();
+                            boolean argCuidadoModificacion;
+                            if(controlCuidado.equalsIgnoreCase("s")){
+                                argCuidadoModificacion = true;
+                            }
+                            else{
+                                argCuidadoModificacion = false;
+                            }
+                            System.out.println("cuantos dias se queda: ");
+                            int argDiasModificacion = teclado.Entero();
+                            //modificamos el datos
+                            if(modificacionPerros(argArreglo, dias, posicion, argNombreModificacion, argApellidoModificacion, argRazaModificacion, argCuidadoModificacion, argAñoModificacion, argDiasModificacion)){
+                                System.out.println("se ha mnodificado el perro!!");
+                            }                            
+                        }
+                    }while(!comparacionPerros(argNombreModificacion, argApellidoModificacion, argRazaModificacion, argArreglo));
+                break;
+                case 6:
+                    System.out.println(espacio(argArreglo));
                 break;
                 default:
                     System.out.println("la opcion no existe ingrese una de las dadas!!");
@@ -100,7 +140,7 @@ public class Tp7 {
         boolean argControl, control = false;
         String argNombre, argApellido, argRaza, controlCuiado;
         int argAño, argDias, longitud = espacio(argArreglo);
-        if (espacio(argArreglo) == -1) {
+        if (espacio(argArreglo) == argArreglo.length) {
             System.out.println("ya no hay espacio en la guarderia!!");
         } else {
             do{
@@ -132,7 +172,7 @@ public class Tp7 {
     public static int espacio(PERRO[] argPerros) {
         //retornamos el primer espacio vacio del arreglo
         boolean control = true;
-        int pos = -1;
+        int pos = argPerros.length;
         int i = 0;
         while(control && i<argPerros.length){
             if(argPerros[i]==null){
@@ -166,11 +206,15 @@ public class Tp7 {
         //retornamos la pocione donde se encuentra un PERROs en particular
         PERRO conparar = new PERRO(argNombre, argApellido, argRaza);
         int pos = -1;
-        for(int i = 0; i<arreglo.length; i++){
-            if(arreglo[i]!=null){
-                if(arreglo[i].equals(conparar)){
-                    pos = i;
-                }
+        boolean control = true;
+        int i = 0;
+        while(i < espacio(arreglo) && control){
+            if(arreglo[i].equals(conparar)){
+                pos = i;
+                control = false;
+            }
+            else{
+                i++;
             }
         }
         return pos;
@@ -180,7 +224,7 @@ public class Tp7 {
         //comparamos con los PERROs de la cadena para verificar que no se repitan los datos
         boolean control = false;
         int i = 0;
-        while(!control && i < espacio(argPerros)-1){
+        while(!control && i < espacio(argPerros)){
             PERRO comparar = new PERRO(argNombre, argApellido, argRaza);
             if(argPerros[i].equals(comparar)){
                 control = true;
@@ -192,9 +236,15 @@ public class Tp7 {
     
     
 
-    public static boolean modificacionPerros(String argNombre, String argApellido, String argRaza, double argCosto, boolean argCuidado) {
+    public static boolean modificacionPerros(PERRO[] argArreglo,int[] dias, int posicion, String argNombre, String argApellido, String argRaza, boolean argCuidado, int argAño, int argDias) {
         //modificamos el PERRO si se modifico retornamos un true, si no un false
-        
+        argArreglo[posicion].setNombre(argNombre);
+        argArreglo[posicion].setApellido(argApellido);
+        argArreglo[posicion].setRaza(argRaza);
+        argArreglo[posicion].setAño(argAño);
+        argArreglo[posicion].setCuidadoEspecial(argCuidado);
+        dias[posicion] = argDias;
+        return true;
     }
 
 }
