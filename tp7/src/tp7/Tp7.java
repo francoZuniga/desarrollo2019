@@ -1,4 +1,5 @@
 package tp7;
+
 public class Tp7 {
 
     public static void main(String[] args) {
@@ -71,13 +72,12 @@ public class Tp7 {
                 break;
                 case 4:
                     System.out.println("modificar en base a:");
-                    System.out.print("ingrese el nombre de un perro");
+                    System.out.print("ingrese el nombre de un perro:");
                     String argNombreModificacion = teclado.string();
                     System.out.print("ingrese un apellido de un dueño:");
                     String argApellidoModificacion = teclado.string();
                     System.out.print("ingrese la raza de un perro:");
                     String argRazaModificacion = teclado.string();
-                    
                 break;
                 default:
                     System.out.println("la opcion no existe ingrese una de las dadas!!");
@@ -196,4 +196,5 @@ public class Tp7 {
         //modificamos el PERRO si se modifico retornamos un true, si no un false
         
     }
+
 }

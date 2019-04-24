@@ -1,12 +1,11 @@
 package tp7;
-public class PERRO {
+public class PERRO{
    public String nombre, apellidoDueño, raza;
    public int año; 
    public double costo;
    public boolean cuidado;
    private double porcentaje = 15;
    private double precio = 100; 
-   
    //constructores
    public PERRO(String argNombre,String argApellidoDueño,String argRaza){
        this.nombre = argNombre;
@@ -27,36 +26,6 @@ public class PERRO {
        this.año = argAño;
        this.cuidado = argCuidado;
    }
-   //modificadores
-   public void setNombre(String argNombre){
-       this.nombre = argNombre;
-   }
-   
-   public void setApellido(String argApellido){
-       this.apellidoDueño = argApellido;
-   }
-   
-   public void setRaza(String argRaza){
-       this.raza = argRaza;
-   }
-   
-   public void setCosto(double argCosto){
-       this.costo = argCosto;
-   }
-   
-   public void setAño(int argAño){
-       this.año = argAño;
-   }
-   
-   public void setCuidadoEspecial(boolean argCuidado){
-       this.cuidado = argCuidado;
-   }
-   
-   public void setPrecioProcentaje(double argPorcentaje){
-       double precioDePorcentaje = porcentaje(argPorcentaje);
-       this.costo = this.costo + precioDePorcentaje;
-   }
-   
    //observadores
    public String getNombre(){
        return this.nombre;
@@ -83,20 +52,27 @@ public class PERRO {
    }
    
    public String toString(){
-       String cuidado;
+       String cuidado = "no";
        if(this.cuidado){
            cuidado = "si";
-       } else {
-           cuidado = "no";
        }
-       return "nombre: "+this.nombre+" dueño: "+this.apellidoDueño+" raza: "+this.raza+" año: "+this.año+" cuidado: "+cuidado;
+       return "nombre: "+this.nombre+" dueño: "+this.apellidoDueño+" raza: "+this.raza+" año: "+this.año+" costo: "+cuidado;
+   }
+   //modificadores
+   public void setCosto(double argCosto){
+       this.costo = argCosto;
+   }
+   
+   public void setPrecioProcentaje(double argPorcentaje){
+       double precioDePorcentaje = porcentaje(argPorcentaje);
+       this.costo = this.costo + precioDePorcentaje;
    }
    //propias del tipo
    private double porcentaje(double argPorcentaje){
        return (this.costo * argPorcentaje)/100;
    }
    
-   public boolean equals(PERRO argPerro){
+   public boolean equels(perro argPerro){
        return this.nombre.equalsIgnoreCase(argPerro.nombre) && this.apellidoDueño.equalsIgnoreCase(argPerro.apellidoDueño) && this.raza.equalsIgnoreCase(argPerro.raza);
    }
 }
